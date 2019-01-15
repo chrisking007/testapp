@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import feign.Body;
+import feign.Headers;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 
@@ -70,7 +71,8 @@ public class TestController {
 	@Consumes(MediaType.TEXT_PLAIN_VALUE)
 	@Body(" sample text ")
     //@GetMapping(value = "/post/feign")
-	@RequestMapping(value = "/post/feign", method = {RequestMethod.POST,RequestMethod.GET},headers={"Content-Length=0"})  
+	@RequestMapping(value = "/post/feign", method = {RequestMethod.POST,RequestMethod.GET},headers={"Content-Length=0"})
+	@Headers("Content-Length: 0")	
     @ApiOperation("Post Request")
     public ResponseEntity<String> callPostWithFeign() {  
         String str = callMe.callPostWithFeign();       
